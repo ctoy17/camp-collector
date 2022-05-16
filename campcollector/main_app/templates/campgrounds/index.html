@@ -5,17 +5,19 @@
 
 {% for camp in camps %}
 <div class="card">
-<div class="card-content">
-    <span class="card-title">{{ camp.name }}</span>
-    <p>City: {{ camp.city }}</p>
-    <p>State: {{ camp.state }}</p>
-    <p>Activities: {{ camp.activities }}</p>
-    {% if camp.pet_friendly == True %}
-    <p>Pets: Pets are Welcome!</p>
-    {% else %}
-    <p>Pets: Not Welcome</p>
-    {% endif %}
-</div>
+    <a href="{% url 'detail' camp.id %}">
+    <div class="card-content">
+        <span class="card-title">{{ camp.name }}</span>
+        <p>City: {{ camp.city }}</p>
+        <p>State: {{ camp.state }}</p>
+        <p>Activities: {{ camp.activities }}</p>
+        {% if camp.pet_friendly == True %}
+        <p>Pets: Pets are Welcome!</p>
+        {% else %}
+        <p>Pets: Not Welcome</p>
+        {% endif %}
+    </div>
+    </a>
 </div>
 {% endfor %}
 

@@ -1,23 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from .models import Camp
 
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
-class Camp:  # Note that parens are optional if not inheriting from another class
-    def __init__(self, name, city, state, activities, pet_friendly):
-        self.name = name
-        self.city = city
-        self.state = state
-        self.activities = activities
-        self.pet_friendly = pet_friendly
 
-camps = [
-    Camp('Watchman Campground', 'Zion National Park', 'Utah', 'Biking, Hiking, Camping, Photography, Star Gazing, Swimming', True),
-    Camp('Mather Campground', 'Grand Canyon National Park', 'Arizona', 'Wildlife Viewing, Horse Camping, Star Gazing, Photography, Hiking, Biking', True),
-    Camp('Kirk Creek', 'Big Sur', 'California', 'Wildlife Viewing, Hiking, Boating, Water Sports, Fishing, Biking, Hunting', True)
-]
+
 
 # Create your views here.
 def home(request):
@@ -42,4 +31,14 @@ def campgrounds_index(request):
     http://localhost:8000/campgrounds/
     """
     logging.info("calling campgrounds_index")
+    camps = Camp.objects.all()
     return render(request, 'campgrounds/index.html', { 'camps': camps })
+
+def campground_detail(request, camp_id):
+    """
+    campground detail
+    http://localhost:8000/campgrounds/1/
+    """
+    logging.info('calling camp_info')
+    camp = Camp.objects.get(id=camp_id)
+    return render(request, 'campgrounds/details.html', {'camp':camp})
