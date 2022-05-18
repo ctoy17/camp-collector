@@ -64,3 +64,12 @@ footer.page-footer {
     color: #9e5c2c;
     font-size: 2.5em;
 }
+input[type="checkbox"]:not(:checked), input[type="checkbox"]:checked{
+    position: relative; 
+    opacity: 1; 
+}
+[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+    position: absolute;
+    opacity: 1;
+    pointer-events: none;
+}
