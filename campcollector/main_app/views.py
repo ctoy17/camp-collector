@@ -1,5 +1,7 @@
+from dataclasses import field
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Camp
 
 import logging
@@ -42,3 +44,17 @@ def campground_detail(request, camp_id):
     logging.info('calling camp_info')
     camp = Camp.objects.get(id=camp_id)
     return render(request, 'campgrounds/details.html', {'camp':camp})
+
+class CampCreate(CreateView):
+    model = Camp
+    fields = '__all__'
+    success_url = '/campgrounds/'
+
+class CampUpdate(UpdateView):
+    model = Camp
+    fields = ['activities']
+    success_url = '/campgrounds/'
+
+class CampDelete(DeleteView):
+  model = Camp
+  success_url = '/campgrounds/'

@@ -15,6 +15,10 @@
     <p>Pets: Not Welcome</p>
     {% endif %}
 </div>
+<div class="card-action">
+    <a href="{% url 'campgrounds_update' camp.id %}">Edit</a>
+    <a href="{% url 'campgrounds_delete' camp.id %}">Delete</a>
+</div>
 </div>
 
 
