@@ -73,6 +73,13 @@ class Camp(models.Model):  # Note that parens are optional if not inheriting fro
     def get_absolute_url(self):
         return reverse('detail', kwargs={'camp_id': self.id})
 
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    camp = models.ForeignKey(Camp, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for camp_id: {self.camp_id} @{self.url}"
+
 class Agency(models.Model):
     organization = models.CharField(
         max_length=1, 
