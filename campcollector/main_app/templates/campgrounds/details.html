@@ -1,25 +1,102 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Camp List</h1>
+<h1>Campground Details</h1>
 
-<div class="card">
-<div class="card-content">
-    <span class="card-title">{{ camp.name }}</span>
-    <p>City: {{ camp.city }}</p>
-    <p>State: {{ camp.state }}</p>
-    <p>Activities: {{ camp.activities }}</p>
-    {% if camp.pet_friendly == True %}
-    <p>Pets: Pets are Welcome!</p>
+<div class="row">
+    <div class="col s6">
+    <div class="card">
+    <div class="card-content">
+        <span class="card-title">{{ camp.name }}</span>
+        <p>City: {{ camp.city }}</p>
+        <p>State: {{ camp.state }}</p>
+        {% if camp.pet_friendly == True %}
+        <p>Pets: Pets are Welcome!</p>
+        {% else %}
+        <p>Pets: Not Welcome</p>
+        {% endif %}
+    </div>
+    <div class="card-action">
+        <a href="{% url 'campgrounds_update' camp.id %}">Edit</a>
+        <a href="{% url 'campgrounds_delete' camp.id %}">Delete</a>
+    </div>
+    </div>
+    </div>
+    <div class="col s6">
+        <form action="{% url 'add_agency' camp.id %}" method="post">
+            {% csrf_token %}
+            {{ agency_form.as_p }}
+            <input type="submit" class="btn" value="Add Agency">
+        </form>
+        <table class="striped">
+        <thead>
+            <tr><th>Agency</th></tr>
+        </thead>
+        <tbody>
+            {% for agency in camp.agency_set.all %}
+            <tr>
+                <td>{{agency.get_organization_display}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col s6">
+        <h3>{{ camp.name }}'s Features</h3>
+        {% if camp.features.count %}
+        {% for features in camp.features.all %}
+            <div class="card">
+            <div class="card-content">
+                <span class="card-title">
+                {{ features.activities }}
+                <!-- <p>{{ features.amentities }}</p>
+                <p>{{ features.sites }}</p> -->
+                </span>
+            </div>
+            </div>
+        {% endfor %}
+        {% else %}
+        <h5>None to Report</h5>
+        {% endif %}
+  </div>
+  <div class="col s6">
+    <h3>Available Features</h3>
+    {% if features.count %}
+      {% for features in features.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+                {{ features.activities }}
+                <!-- <p>{{ features.amentities }}</p>
+                <p>{{ features.sites }}</p> -->
+            </span>
+          </div>
+          <div class="card-action">
+            <form action="{% url 'assoc_features' camp.id features.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn">Add</button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
     {% else %}
-    <p>Pets: Not Welcome</p>
+      <h5>{{camp.name}} All Available Features Added </h5>
     {% endif %}
-</div>
-<div class="card-action">
-    <a href="{% url 'campgrounds_update' camp.id %}">Edit</a>
-    <a href="{% url 'campgrounds_delete' camp.id %}">Delete</a>
-</div>
-</div>
+  </div>
+<script>
+const selectEl = document.getElementById('id_organization');
+    M.FormSelect.init(selectEl);
+// const selectMul = document.getElementById('id_amenities');
+//     M.FormSelect.init(selectMul);
+// const selectMul1 = document.getElementById('id_activities');
+//     M.FormSelect.init(selectMul1);
+// const selectSite = document.getElementById('id_sites');
+//     M.FormSelect.init(selectSite);
 
+
+</script>
 
 {% endblock %}
