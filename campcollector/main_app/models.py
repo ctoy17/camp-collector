@@ -55,7 +55,7 @@ class Features(models.Model):
     #     default=[0][0])
 
     def get_absolute_url(self):
-        return reverse('camp_detail', kwargs={'pk': self.id})
+        return reverse('features_detail', kwargs={'pk': self.id})
 
     def __str__(self):
         return self.activities
