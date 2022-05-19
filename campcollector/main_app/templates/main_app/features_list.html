@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Features List</h1>
+
+{% for features in features_list %}
+  <a href="{% url 'features_detail' features.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ features.activities }}</span>
+        </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}
