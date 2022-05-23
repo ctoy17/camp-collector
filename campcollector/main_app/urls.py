@@ -20,4 +20,5 @@ urlpatterns = [
     path('features/<int:pk>/delete/', views.FeaturesDelete.as_view(), name='features_delete'), 
     path('accounts/signup/', views.signup, name='signup'),
 
+
 ]

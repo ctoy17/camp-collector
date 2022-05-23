@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 
 
 
-
 ORGANIZATIONS = (
     ('N', 'National Park'),
     ('S', 'State Park'),    
@@ -70,6 +69,7 @@ class Camp(models.Model):  # Note that parens are optional if not inheriting fro
     pet_friendly = models.BooleanField()
     features = models.ManyToManyField(Features)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
 
     def __str__(self):
         return self.name

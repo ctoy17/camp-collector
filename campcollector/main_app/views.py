@@ -10,6 +10,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 from .models import Camp, Features, Photo
 from .forms import AgencyForm
 
@@ -57,6 +58,7 @@ def campground_detail(request, camp_id):
     features_camp_doesnt_have = Features.objects.exclude(id__in = camp.features.all().values_list('id'))
     agency_form = AgencyForm()
     return render(request, 'campgrounds/details.html', {'camp':camp, 'agency_form': agency_form, 'features': features_camp_doesnt_have})
+
 
 @login_required
 def add_photo(request, camp_id):
@@ -148,5 +150,3 @@ class FeaturesUpdate(LoginRequiredMixin, UpdateView):
     fields = '__all__'
 
 class FeaturesDelete(LoginRequiredMixin, DeleteView):
-    model = Features
-    success_url = '/features/'
