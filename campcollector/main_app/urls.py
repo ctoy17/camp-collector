@@ -17,5 +17,7 @@ urlpatterns = [
     path('features/<int:pk>/', views.FeaturesDetail.as_view(), name='features_detail'),
     path('features/create/', views.FeaturesCreate.as_view(), name='features_create'),
     path('features/<int:pk>/update/', views.FeaturesUpdate.as_view(), name='features_update'),
-    path('features/<int:pk>/delete/', views.FeaturesDelete.as_view(), name='features_delete'),
+    path('features/<int:pk>/delete/', views.FeaturesDelete.as_view(), name='features_delete'), 
+    path('accounts/signup/', views.signup, name='signup'),
+
 ]
