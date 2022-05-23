@@ -6,6 +6,33 @@ body {
     /* background-image: url("https://i.imgur.com/FYRSl8Y.png"); */
     background-repeat: no-repeat;
     background-position: center;
+    background-color: rgba(100, 101, 82, 0.721);
+}
+input.btn, .btn-large, .btn-small{
+    background-color: #9e5c2c;
+}
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+    color: #9e5c2c;
+    border-radius: 25px;
+}
+.card{
+    border-radius: 25px;
+}
+.btn, .btn-large, .btn-small {
+    background-color: #9e5c2c;
+}
+.card, .card-panel{
+    background-color: rgb(247, 245, 231);
+    border-radius: 25px;
+
+}
+a,label {
+    color:#313332;
+}
+.card .card-image img .card-content{
+    max-width: 80%;
+    height: auto;
+    border-radius: 25px;
 }
 nav{
     background-color: #313332;
@@ -44,6 +71,11 @@ footer.page-footer {
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    box-shadow: 0 8px 20px 0 #313332;
+    border-radius: 25px;
+
 }
 .hero-text{
     font-family: 'Rock Salt';

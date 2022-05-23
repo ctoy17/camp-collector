@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 
@@ -67,6 +68,9 @@ class Camp(models.Model):  # Note that parens are optional if not inheriting fro
     state = models.CharField(max_length=100)
     pet_friendly = models.BooleanField()
     features = models.ManyToManyField(Features)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
     def __str__(self):
         return self.name
 
